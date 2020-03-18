@@ -11,7 +11,8 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  keyboardVerticalOffset
+  keyboardVerticalOffset,
+  Platform //tells us if we are running on iOS or Android
 } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -74,7 +75,7 @@ function App() {
 
 //Home page layout and functions
 class HomePage extends Component {
-//set class state
+  //set class state
   state = { text: '' };
 
   constructor(props) {
@@ -171,8 +172,8 @@ class HomePage extends Component {
 //Survey Page
 
 //set survey variables
-var withDr= 0;
-var withoutDr= 0;
+var withDr = 0;
+var withoutDr = 0;
 class Survey extends Component {
   //set class state
   state = { text: '' };
@@ -188,12 +189,12 @@ class Survey extends Component {
   //increment amount of patients with physician
   IncrementWith = () => {
     withDr++
-    this.setState({yeschecked: !this.state.yeschecked});
+    this.setState({ yeschecked: !this.state.yeschecked });
   }
   //increment amount without physician
   IncrementWithout = () => {
     withoutDr++
-    this.setState({nochecked: !this.state.nochecked});
+    this.setState({ nochecked: !this.state.nochecked });
   }
 
   //clear input and navigate to summary page
@@ -354,7 +355,7 @@ class Summary extends Component {
       count: 0
     };
   }
-  
+
   //event handler to allow navigation back to home page
   goHome() {
     this.props.navigation.navigate('Home')
@@ -392,20 +393,20 @@ const styles = StyleSheet.create({
 
   image: {
     resizeMode: 'contain',
-    height: 80,
+    height: Platform.OS === 'android' ? 80 : 60, //height 80 for android, 60 for iOS
     alignItems: 'flex-start',
-    marginRight: 280,
-    marginTop: 120,
+    marginRight: Platform.OS === 'android' ? 280 : 250, //marginRight 280 for android, 250 for iOS
+    marginTop: Platform.OS === 'android' ? 120 : 110, //marginTop 120 for android, 110 for iOS
   },
 
   header: {
-    fontSize: 30,
-    marginBottom: 20,
+    fontSize: Platform.OS === 'android' ? 30 : 25, //fontSize 30 for android, 25 for iOS
+    marginBottom: Platform.OS === 'android' ? 20 : 18, //marginBottom 20 for android, 18 for iOS
     fontWeight: 'bold',
-    marginTop: 10,
+    marginTop: Platform.OS === 'android' ? 10 : 12, //marginTop 10 for android, 12 for iOS
   },
   textContainer: {
-    marginBottom: 80,
+    marginBottom: Platform.OS === 'android' ? 80 : 78, //marginBottom 80 for android, 78 for iOS
   },
 
   inner: {
@@ -419,8 +420,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingTop: 60,
-    marginBottom: 120,
+    paddingTop: Platform.OS === 'android' ? 60 : 80, //paddingTop 60 for android, 80 for iOS
+    marginBottom: Platform.OS === 'android' ? 120 : 150, //marginBottom 120 android, marginBottom 150 iOS
     alignItems: 'center',
     position: 'absolute',
     bottom: 0,
@@ -429,7 +430,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    marginBottom: 36,
+    marginBottom: Platform.OS === 'android' ? 36 : 38, //marginBottom 36 for android, 38 for iOS
     justifyContent: 'flex-end',
     margin: 10,
     width: 300,
@@ -456,7 +457,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderColor: "#d6d6d6",
     borderWidth: 1,
-    marginBottom: 30,
+    marginBottom: Platform.OS === 'android' ? 30 : 28, //marginBottom 30 for android, 28 for iOS
     borderRadius: 5,
   },
 
@@ -466,7 +467,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'flex-start',
     borderRadius: 5,
-    marginBottom: 30,
+    marginBottom: Platform.OS === 'android' ? 30 : 28, //marginBottom 30 for android, 28 for iOS
     marginLeft: 20,
     marginRight: 20
   },
@@ -477,6 +478,6 @@ const styles = StyleSheet.create({
   summaryText: {
     fontSize: 20,
     marginLeft: 20,
-    marginBottom: 20
+    marginBottom: Platform.OS === 'android' ? 20 : 18 //marginBottom 20 for android, 18 for iOS
   }
 });
