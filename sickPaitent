@@ -1,3 +1,4 @@
+
 //home page
 import React, { Component } from 'react';
 import {
@@ -35,7 +36,10 @@ function App() {
           component={HomePage}
           options={{
             headerStyle: {
-              backgroundColor: "#2d87d6",
+              ...Platform.select({ //Makes color scheme grey on iOS, blue on android
+                ios: { backgroundColor: '#858585'}, 
+                android: { backgroundColor: '#2d87d6'},
+              }),
             },
             headerTitleStyle: {
               color: 'white'
@@ -48,7 +52,10 @@ function App() {
           component={Survey}
           options={{
             headerStyle: {
-              backgroundColor: "#2d87d6",
+              ...Platform.select({ //Makes color scheme grey on iOS, blue on android
+                ios: { backgroundColor: '#858585'},
+                android: { backgroundColor: '#2d87d6'},
+              }),
             },
             headerTitleStyle: {
               color: 'white'
@@ -61,7 +68,10 @@ function App() {
           component={Summary}
           options={{
             headerStyle: {
-              backgroundColor: "#2d87d6",
+              ...Platform.select({ //Makes color scheme grey on iOS, blue on android
+                ios: { backgroundColor: '#858585'},
+                android: { backgroundColor: '#2d87d6'},
+              }),
             },
             headerTitleStyle: {
               color: 'white'
@@ -393,20 +403,20 @@ const styles = StyleSheet.create({
 
   image: {
     resizeMode: 'contain',
-    height: Platform.OS === 'android' ? 80 : 60, //height 80 for android, 60 for iOS
+    height: Platform.OS === 'android' ? 80 : 82, //height 80 for android, 60 for iOS
     alignItems: 'flex-start',
-    marginRight: Platform.OS === 'android' ? 280 : 250, //marginRight 280 for android, 250 for iOS
+    marginRight: Platform.OS === 'android' ? 280 : 260, //marginRight 280 for android, 250 for iOS
     marginTop: Platform.OS === 'android' ? 120 : 110, //marginTop 120 for android, 110 for iOS
   },
 
   header: {
-    fontSize: Platform.OS === 'android' ? 30 : 25, //fontSize 30 for android, 25 for iOS
+    fontSize: Platform.OS === 'android' ? 30 : 32, //fontSize 30 for android, 32 for iOS
     marginBottom: Platform.OS === 'android' ? 20 : 18, //marginBottom 20 for android, 18 for iOS
     fontWeight: 'bold',
     marginTop: Platform.OS === 'android' ? 10 : 12, //marginTop 10 for android, 12 for iOS
   },
   textContainer: {
-    marginBottom: Platform.OS === 'android' ? 80 : 78, //marginBottom 80 for android, 78 for iOS
+    marginBottom: Platform.OS === 'android' ? 80 : 85, //marginBottom 80 for android, 85 for iOS
   },
 
   inner: {
@@ -430,12 +440,15 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    marginBottom: Platform.OS === 'android' ? 36 : 38, //marginBottom 36 for android, 38 for iOS
+    marginBottom: Platform.OS === 'android' ? 36 : 10, //marginBottom 36 for android, 10 for iOS
     justifyContent: 'flex-end',
     margin: 10,
     width: 300,
     alignItems: 'center',
-    backgroundColor: '#2d87d6',
+    ...Platform.select({ //Makes color scheme grey on iOS, blue on android
+      ios: { backgroundColor: '#858585'}, 
+      android: { backgroundColor: '#2d87d6'},
+    }),
     borderRadius: 5,
   },
 
