@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableNativeFeedbackBase } from 'react-nativ
 export default function App() {
   return (
     <View style={styles.container}>
+    <Text style={styles.container}>Welcome to Android Music Player</Text>
       <View style={styles.title}><Text style={styles.titletext}>Music Player</Text></View>
       <View style={styles.song1}><Text style={styles.playtext}>Song 1: Play</Text></View>
       <View style={styles.song1}><Text style={styles.playtext}>Song 2: Play</Text></View>
